@@ -69,7 +69,8 @@ driver = uc.Chrome(
 #df = pd.read_csv('/home/justdial/Documents/bms/bmsurls_newdata_match.csv',sep="|")
 #df = pd.read_csv('/home/justdial/Documents/bms/bms_input_theater_Dec_22_23.csv',sep="|")
 # df = pd.read_csv('/home/justdial/Documents/bms/csv/bms_input_25092025.csv',sep="|")
-df = pd.read_csv('/home/justdial/Documents/bms/csv/BMS_14102025.csv',sep="^")
+#df = pd.read_csv('/home/justdial/Documents/bms/csv/BMS_14102025.csv',sep="^")
+df = pd.read_csv('/home/justdial/Documents/bms/csv/bms_latest.csv',sep="^")
 df.columns
 
 
@@ -82,10 +83,10 @@ def pagination(soup,tid,dates_l,base_url):
     for date in dates_l:
         
         base_url=base_url
-        modify_page_url=base_url +"/"+date
+        modify_page_url=base_url +date
         page_date= date
     
-        print("page url : ", base_url)
+        print("base url : ", base_url)
         print("page url : ", modify_page_url)
         print("page_date : ", page_date)
         
@@ -140,8 +141,16 @@ for i in range(0,end):
     tid=row["VenueCode"].replace('M01_', '')
 #     modify_url=url+"/"+d1
     modify_url=str(url) + "/" + str(d1)
-    print("url : ",url) 
+    
+    print('old url -- ',url)
+#    url = re.sub(r'/\d{8}$', '', url)
+    
+    print("url : ",url)
+    print()
+    print('-----------------------------------')
+    print()
     print("modify url : ",modify_url)
+    print('-----------------------------------')
     
     page_path="/home/justdial/data/input/bms_movies/"+str(tid)+".html"
 
